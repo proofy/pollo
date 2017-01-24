@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+
+<!-- This is a very simple schema (following NO standard schema syntax).
+     It tells the editor:
+       - which attributes may occur on which elements
+       - optionally a list to select attribute values from (can be computed with an xpath-expression)
+       - which child-elements are allowed on an element.
+
+	 author: Bruno Dumon
+-->
+
+<schema xmlns:map="http://apache.org/cocoon/sitemap/1.0">
+	
+	<!-- This element defines the namespace prefixes that can be used in XPath expressions.
+	Note that the 'xmlns:' should not be used at the start of attribute names. -->
+	<xpath-ns-prefixes map="http://apache.org/cocoon/sitemap/1.0"/>
+
+	<element name="map:parameter">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="value"/>
+		</attributes>
+	</element>
+
+	<element name="map:generate">
+		<attributes>
+			<attribute name="type" readvaluesfrom="/map:sitemap/map:components/map:generators/map:generator/@name"/>
+			<attribute name="src"/>
+			<attribute name="label"/>
+		</attributes>
+		<allowedsubelements names="map:parameter"/>
+	</element>
+
+	<element name="map:transform">
+		<attributes>
+			<attribute name="type" readvaluesfrom="/map:sitemap/map:components/map:transformers/map:transformer/@name"/>
+			<attribute name="src"/>
+			<attribute name="label"/>
+		</attributes>
+		<allowedsubelements names="map:parameter"/>
+	</element>
+
+	<element name="map:serialize">
+		<attributes>
+			<attribute name="type" readvaluesfrom="/map:sitemap/map:components/map:serializers/map:serializer/@name"/>
+			<attribute name="mime-type"/>
+			<attribute name="status-code"/>
+			<attribute name="label"/>
+		</attributes>
+		<allowedsubelements names="map:parameter"/>
+	</element>
+
+	<element name="map:read">
+		<attributes>
+			<attribute name="type" readvaluesfrom="/map:sitemap/map:components/map:readers/map:reader/@name"/>
+			<attribute name="src"/>
+			<attribute name="mime-type"/>
+		</attributes>
+		<allowedsubelements names="map:parameter"/>
+	</element>
+
+	<element name="map:redirect-to">
+		<attributes>
+			<attribute name="uri"/>
+			<attribute name="session" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names=""/>
+	</element>
+
+	<element name="map:call">
+		<attributes>
+			<attribute name="resource" readvaluesfrom="/map:sitemap/map:resources/map:resource/@name"/>
+		</attributes>
+		<allowedsubelements names="map:parameter"/>
+	</element>
+
+	<element name="map:action-set/map:act">
+		<attributes>
+			<attribute name="type" readvaluesfrom="/map:sitemap/map:components/map:actions/map:action/@name"/>
+			<attribute name="src"/>
+			<attribute name="action"/>
+		</attributes>
+		<allowedsubelements names=""/>
+	</element>
+
+	<element name="map:act">
+		<attributes>
+			<attribute name="type" readvaluesfrom="/map:sitemap/map:components/map:actions/map:action/@name"/>
+			<attribute name="set" readvaluesfrom="/map:sitemap/map:action-sets/map:action-set/@name"/>
+			<attribute name="src"/>
+		</attributes>
+		<allowedsubelements names="map:parameter,map:generate,map:transform,map:serialize,map:select,map:match,map:act,map:redirect-to,map:read,map:aggregate,map:mount,map:call"/>
+	</element>
+
+	<element name="map:select">
+		<attributes>
+			<attribute name="type" readvaluesfrom="/map:sitemap/map:components/map:selectors/map:selector/@name"/>
+		</attributes>
+		<allowedsubelements names="map:parameter,map:when,map:otherwise"/>
+	</element>
+
+	<element name="map:when">
+		<attributes>
+			<attribute name="test"/>
+		</attributes>
+		<allowedsubelements names="map:generate,map:transform,map:serialize,map:select,map:match,map:act,map:redirect-to,map:read,map:aggregate,map:mount,map:call"/>
+	</element>
+
+	<element name="map:otherwise">
+		<allowedsubelements names="map:generate,map:transform,map:serialize,map:select,map:match,map:act,map:redirect-to,map:read,map:aggregate,map:mount,map:call"/>
+	</element>
+
+	<element name="map:match">
+		<attributes>
+			<attribute name="type" readvaluesfrom="/map:sitemap/map:components/map:matchers/map:matcher/@name"/>
+			<attribute name="pattern"/>
+		</attributes>
+		<allowedsubelements names="map:parameter,map:generate,map:transform,map:serialize,map:select,map:match,map:act,map:redirect-to,map:read,map:aggregate,map:mount,map:call"/>
+	</element>
+
+	<element name="map:mount">
+		<attributes>
+			<attribute name="src"/>
+			<attribute name="uri-prefix"/>
+			<attribute name="language"/>
+		</attributes>
+		<allowedsubelements names=""/>
+	</element>
+
+	<element name="map:aggregate">
+		<attributes>
+			<attribute name="element"/>
+			<attribute name="ns"/>
+			<attribute name="prefix"/>
+			<attribute name="label"/>
+		</attributes>
+		<allowedsubelements names="map:part"/>
+	</element>
+
+	<element name="map:part">
+		<attributes>
+			<attribute name="src"/>
+			<attribute name="element"/>
+			<attribute name="ns"/>
+			<attribute name="prefix"/>
+			<attribute name="strip-root" choosefrom="true,false"/>
+			<attribute name="label"/>
+		</attributes>
+	</element>
+
+	<element name="map:action-sets">
+		<allowedsubelements names="map:action-set"/>
+	</element>
+
+	<element name="map:action-set">
+		<attributes>
+			<attribute name="name"/>
+		</attributes>
+		<allowedsubelements names="map:act"/>
+	</element>
+
+	<element name="map:views">
+		<allowedsubelements names="map:view"/>
+	</element>
+
+	<element name="map:view">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="from-label"/>
+			<attribute name="from-position" choosefrom="first,last"/>
+		</attributes>
+		<allowedsubelements names="map:transform,map:serialize,map:select,map:match,map:act,map:redirect-to,map:read,map:mount,map:call"/>
+	</element>
+
+	<element name="map:pipelines">
+		<allowedsubelements names="map:pipeline"/>
+	</element>
+
+	<element name="map:pipeline">
+		<attributes>
+			<attribute name="internal-only" choosefrom="true,false" />
+		</attributes>
+		<allowedsubelements names="map:generate,map:transform,map:serialize,map:select,map:match,map:act,map:redirect-to,map:read,map:aggregate,map:mount,map:call,map:handle-errors"/>
+	</element>
+
+	<element name="map:resources">
+		<allowedsubelements names="map:resource"/>
+	</element>
+
+	<element name="map:resource">
+		<attributes>
+			<attribute name="name"/>
+		</attributes>
+		<allowedsubelements names="map:generate,map:transform,map:serialize,map:select,map:match,map:act,map:redirect-to,map:read,map:aggregate,map:mount,map:call"/>
+	</element>
+
+	<element name="map:handle-errors">
+		<attributes>
+			<attribute name="type" choosefrom="404,500"/>
+		</attributes>
+		<allowedsubelements names="map:transform,map:serialize,map:select,map:match,map:act,map:redirect-to,map:read,map:mount,map:call"/>
+	</element>
+
+	<element name="map:components">
+		<allowedsubelements names="map:generators,map:transformers,map:readers,map:serializers,map:selectors,map:matchers,map:actions"/>
+	</element>
+
+	<element name="map:generators">
+		<attributes>
+			<attribute name="default" readvaluesfrom="/map:sitemap/map:components/map:generators/map:generator/@name"/>
+		</attributes>
+		<allowedsubelements names="map:generator"/>
+	</element>
+
+	<element name="map:transformers">
+		<attributes>
+			<attribute name="default" readvaluesfrom="/map:sitemap/map:components/map:transformers/map:transformer/@name"/>
+		</attributes>
+		<allowedsubelements names="map:transformer"/>
+	</element>
+
+	<element name="map:readers">
+		<attributes>
+			<attribute name="default" readvaluesfrom="/map:sitemap/map:components/map:readers/map:reader/@name"/>
+		</attributes>
+		<allowedsubelements names="map:reader"/>
+	</element>
+
+	<element name="map:serializers">
+		<attributes>
+			<attribute name="default" readvaluesfrom="/map:sitemap/map:components/map:serializers/map:serializer/@name"/>
+		</attributes>
+		<allowedsubelements names="map:serializer"/>
+	</element>
+
+	<element name="map:selectors">
+		<attributes>
+			<attribute name="default" readvaluesfrom="/map:sitemap/map:components/map:selectors/map:selector/@name"/>
+		</attributes>
+		<allowedsubelements names="map:selector"/>
+	</element>
+
+	<element name="map:matchers">
+		<attributes>
+			<attribute name="default" readvaluesfrom="/map:sitemap/map:components/map:matchers/map:matcher/@name"/>
+		</attributes>
+		<allowedsubelements names="map:matcher"/>
+	</element>
+
+	<element name="map:actions">
+		<allowedsubelements names="map:action"/>
+	</element>
+
+	<element name="map:generator">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="src"/>
+			<attribute name="label"/>
+			<attribute name="pool-min"/>
+			<attribute name="pool-max"/>
+			<attribute name="pool-grow"/>
+			<attribute name="logger"/>
+		</attributes>
+	</element>
+
+	<element name="map:transformer">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="src"/>
+			<attribute name="label"/>
+			<attribute name="pool-min"/>
+			<attribute name="pool-max"/>
+			<attribute name="pool-grow"/>
+			<attribute name="logger"/>
+		</attributes>
+	</element>
+
+	<element name="map:reader">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="src"/>
+			<attribute name="mime-type"/>
+			<attribute name="pool-min"/>
+			<attribute name="pool-max"/>
+			<attribute name="pool-grow"/>
+			<attribute name="logger"/>
+		</attributes>
+	</element>
+
+	<element name="map:serializer">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="src"/>
+			<attribute name="label"/>
+			<attribute name="mime-type"/>
+			<attribute name="pool-min"/>
+			<attribute name="pool-max"/>
+			<attribute name="pool-grow"/>
+			<attribute name="logger"/>
+		</attributes>
+	</element>
+
+	<element name="map:selector">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="src"/>
+			<attribute name="pool-min"/>
+			<attribute name="pool-max"/>
+			<attribute name="pool-grow"/>
+			<attribute name="logger"/>
+		</attributes>
+	</element>
+
+	<element name="map:matcher">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="src"/>
+			<attribute name="pool-min"/>
+			<attribute name="pool-max"/>
+			<attribute name="pool-grow"/>
+			<attribute name="logger"/>
+		</attributes>
+	</element>
+
+	<element name="map:action">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="src"/>
+			<attribute name="pool-min"/>
+			<attribute name="pool-max"/>
+			<attribute name="pool-grow"/>
+			<attribute name="logger"/>
+		</attributes>
+	</element>
+
+</schema>

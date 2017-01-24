@@ -1,0 +1,312 @@
+version 0.4
+===========
+ This version has been possible through the kind sponsering by Infobjects.
+
+ - A new, more classic, tree view has been introduced next to Pollo's special
+   colorful treeview. The type of tree to be used is specified as
+   part of the display specification, but can be overridden by the user.
+ - Support more options in the display specifications:
+    - for elements and attributes, a label can be defined to be shown
+      instead of the real element name
+    - for elements and attributes, the text color to display them
+      can be defined.
+    - for elements, an icon to be shown can be specified. By
+      default a box-icon colored in the element's background color
+      is shown.
+    - for elements and attributes, help texts can be defined.
+
+   The XML format of the display specifications has been changed without
+   maintaining backwards compatibility. There is an utility class
+   that can convert the old format to the new one, it is called
+   DisplaySpecificationToZeroDotFour. If you need help on using
+   this, just ask on the mailing list.
+
+ - Added "Close All" and "Close All Except This" actions to the file menu.
+ - Made the splitpane containing the node editor and help panel
+   "one touch expandable".
+ - Added context menu on the file tabs containing "Close view" and
+   "Close All Except This" options.
+ - Made the size of the undo stack configurable through the user preferences
+   dialog (previously it was always unlimitted). Default is 50.
+ - handle corrupted .pollorc file gracefully
+ - don't do text-wrapping when saving a file
+ - Added a Cocoon 2.1 sitemap schema & display spec. This is only
+   a first go at it. It includes the following changes: addition of
+   map:flow, map:script, map:pipes, map:pipe, map:call/@function,
+   map:call/@continuation, map:act/@name, map:match/@name,
+   map:generate/@hint, map:transform/@hint, map:serialize/@hint,
+   map:redirect-to/@global, map:redirect-to/@permanent,
+   map:component-configuration. I've also added help texts here and
+   there, but currently only a very small number of elements and
+   attributes have them.
+ - removed the display specification editor tool, which was only
+   an experiment. There is now a view-type for editing the
+   display specfication files.
+ - When using a DTD as schema, required attributes have an exclamation
+   mark next to them in the attribute editor.
+ - Upgraded MSV to nightly build of October 2, 2003. Thanks to Gregory Davis.
+ - The pollo.sh script is now executable from everywhere, you don't
+   have to be in the 'pollo/bin' directory. Thanks to Gregory Davis.
+ - This release should work on Java 1.3 again
+ - all kind of miscellaneous small stuff
+
+version 0.3.6
+=============
+ - Made pollo.bat work on older Windows versions (such as Windows 98)
+ - Added an editor for editing display specification files. I've created
+   this only for the fun of it, mainly for writing the color-selector.
+   If you'd like to see it improved, consider contributing!
+ - Added simple search functionality in text-mode, kindly contributed by
+   Roger I Martin.
+
+version 0.3.5
+=============
+FEATURES
+ - Some initial user preferences: you can now change the fonts
+   used in the treeview by selecting File | User Preferences.
+   I get good effects putting element and attribute names to a bold,
+   non-italic font.
+BUG FIXES
+ - changed shortcut for toggle expand/collapse to control space
+   instead of just space, since otherwise pressing space in the
+   editor for text nodes also invoked this action.
+ - when changing text view to tree view in the dropdown, and the switch
+   to tree view failed, then tree view stayed incorrectly selected
+   in the dropdown
+ - The action 'Show Content Model' never worked.
+
+version 0.3.4
+=============
+ - Fixed serious memory leaks (after closing  a file, the resources
+   used up by the file were not released).
+ - Integrated a patch by Roger I Martin to allow copy during drag-and-drop
+   (press ctrl and then drag), and to automatically switch tabs when you
+   move over them while dragging.
+ - Because of a clipping bug in Java (most visible in version 1.4, see
+   the java bugparade nr. 4265778), the element shapes were drawed
+   incorrectly in (very) large files. This is fixed now by letting Pollo
+   clip the largest part of the shape itself.
+ - Some new keyboard navigations contributed by Curt Thompson.
+ - Accelerator and mnemonic keys for the menus, contributed by Scott Willy.
+   This is part of his ongoing effort to i18n-ize pollo.
+ - updated Cocoon sitemap schema, it now corresponds to cocoon 2.02
+ - added a new feature to the pollo schema format and the
+   displayspecification: it is now possible to describe the element
+   based on its parent element. E.g. in the cocoon sitemap, a map:act
+   element has other attributes depending on its context.
+ - The menu for recently used files wasn't accessible using arrow keys
+ - Enhanced the attribute editor: when selecting a value from a dropdown,
+   and there are additional buttons (like for cocoon), then the additional
+   buttons are now to the left of the dropdown button.
+   The keyboard in the attribute editor should now work
+   as one would expect (F2 to start editing cell, ...).
+   Only cells in the second column are selectable.
+ - Elements can now be selected by clicking on their left bar.
+ - A file passed as a command line argument will be opened automatically.
+ - Use system line separator when saving files.
+ - Use Aqua Look And Feel on OS X, due to Richard Bounds
+ - DTD's referenced in DOCTYPE's are no never loaded. Moved to Xerces 2
+   to make this possible.
+ - Render entity-reference nodes (no possibility to create them yet -- if
+   anyone needs this, let me know).
+ - Pressing escape moves focus back to the main editor widget.
+ - Default encoding when saving in text view is now UTF-8, as it should be
+ - Included a schema for Ant 1.5
+ - Removed the JavaHelp system, the content will now be on Pollo's website.
+   This will make it easier to update, and easier to read.
+ - Changed the icons to the default Java L&F icons, because the ones
+   I was using previously are now covered by GPL.
+
+version 0.3.3
+=============
+ - Added support for various schema languages through Sun's Multi Schema
+   Validator (XML Schema, RELAX-NG, and others are supported). The boxes
+   for selecting elements just show all elements allowed as child of their
+   parent elements, they don't take in account all features of the content
+   model (might come in a later version).
+   You can view the precise allowed content model though using the menu option
+   Schema -> Show Content Model. It is of course also possible to validate
+   the document against the schema in use (menu: Schema -> Validate).
+   A lot of credit for this work goes to Al Byers, who got me started on
+   this.
+ - The dialog box for selecting the view type is extended so that
+   you can choose the schema to use etc. These settings cannot be saved
+   yet however.
+   I added some info in the online help about how to add new view types
+   in pollo's configuration file.
+ - The welcome dialog box has been dropped, it is now possible to open
+   multiple files in one window with a tabbed interface. It is still
+   possible to create multiple windows and mulitple views on the same
+   file. It's a bit like in Mozilla and Opera.
+ - There's a cool new action plugin framework: it is possible to write
+   plugins that provide additional actions under an action menu.
+   Once again inspired by Al Byers.
+ - In many situations pollo didn't provide a parent frame when showing modal
+   dialog boxes, which could lead to trouble when a modal dialog box
+   dissappaerd under the main frame (especially in Windows). A lot of these
+   situations should now be fixed.
+ - Added some initial online help.
+ - Added menu with recently opened files (the list is stored in the .pollorc
+   in your home directory)
+ - It is not longer possible to open the same file more than one time.
+ - Added a toolbar, moved the text/tree mode switch over there, because
+   otherwise there would be tabs inside tabs.
+ - JDK 1.4 compatible (wheelmouse!) I noticed though that on Windows, the
+   cursor is sometimes not visible in text mode.
+ - position of split panes and window size are stored in user configuration
+ - untitled files are now numbered so that it's possible to distinguish them
+ - new Cocoon stuff: attribute editor plugin with support for browsing files
+   and inserting references to patterns in wildcard URI matchers. Plugin
+   actions (see 'Plugin Actions' menu) to quickly go to a matcher pattern,
+   to go to a component declaration, and to open the file referenced by a
+   src attribute.
+ - updated Ant schema to Ant 1.4.1
+ - some GUI tweaking (split panes made nicer, text aligned in menus).
+
+version 0.3.2
+=============
+ - for attributes for which a choicelist is available, an arrow is
+   drawn so that you can easily see which attributes have choicelists.
+ - the text view is now editable:
+    - each time you switch back to the tree view, the dom tree is rebuild,
+      as is the tree view itself.
+    - the text editor doesn't (yet) provide any advanced functionality,
+      such as automatic indenting or element name popups.
+    - non-well-formed files can now also be opened, these will be displayed
+      in text view by default, and you can't switch to tree view until
+      the xml is well-formed. When opening a file this way, the character
+      encoding isn't yet correctly determined, the java default is used.
+    - when saving a file while in text mode, Pollo will use the encoding
+      defined in the "<?xml" declaraction.
+ - The cocoon special mode is not available anymore, it will return in
+   a later release when there will be a plugin framework.
+ - The menubar now contains commands that were previously only available
+   with the context menu.
+ - tuned the sizes of the panels in the splitpanes
+ - in the dialog for choosing the type of view, double click on the list
+   is now supported.
+ - Some buttons, like the ones on the XPath query panel, cannot get
+   focus anymore, leaving the focus wherever it was before you pressed
+   the button.
+ - Added a bar displaying the XPath path to the currently selected node
+   (also works when selecting attributes).
+
+version 0.3.1
+=============
+ - when a character data node (text, comment, cdata, pi) is collapsed,
+   draw the first line of text.
+ - Two new types of nodes supported:
+    - the document node: this allows that nodes before and after the
+      document element (comments and pi's) are now also visible/editable.
+    - processing instructions. This is actually a special case of character
+      data nodes.
+ - the view can now be rendered to a file: just right click on any node
+   and select the 'Store as image...' option. Only saving as jpeg is
+   supported, as this is the only format support by jdk 1.3 (jdk 1.4
+   will also support other formats such as png).
+ - wrote the basic code to manage a user-preferences file. The preferences
+   file is stored in the user home directory and is named ".pollorc".
+ - if a file is changed, a * is shown in front of its name in the
+   titlebar (thanks to Steven Noels for the suggestion).
+ - the last path used in the file-open dialog is now remembered,
+   and written to the user preferences file (thanks to Steven Noels for the
+   suggestion).
+ - changed the order of the of the Execute and '?' (examples) buttons next to
+   the xpath query field. Pressing enter executes the query. (suggestions
+   made by Steven Noels).
+ - added a schema and template for XSL:FO (in cooperation with Steven Noels).
+ - Added a 'View Source' feature (read only)
+ - Upgraded jaxen to a version I pulled out of the jaxen cvs repository.
+
+version 0.3
+===========
+ - Added keyboard support, see the Help->About for an overview
+   of the keybindings.
+ - All attributes of an element are now rendered, regardless of
+   whether they are specified in the display specification or not.
+   Attributes that are defined in the display specification are
+   first shown (in the same order as they appear in the displayspec),
+   then the remaining attributes are shown.
+ - Changed the format of the Pollo configuration file to XML instead
+   of java properties format. Use apache common's digester to build
+   an object structure from it.
+ - Defined interfaces for display specifications and schemas and
+   for their factories. These factories are now specified in the
+   Pollo configuration file per viewtype, so that other implementations
+   can be used for other filetypes. Added generic implementations
+   of the display specification and schema which can be used for
+   XML files not explicitely supported by Pollo. Also made an implementation
+   of them which chains a number of other display specifications/schemas.
+   This will allow to support file types using mixed schemas,
+   such as WSDL containing XML Schema.
+ - Added the possibility to create plugins for editing attribute values.
+   These plugins can be chained, meaning that if the first plugin
+   doesn't return an editor for attribute, then the next plugin is
+   asked for one, and so on. Also included is an example plugin for
+   Ant, that allows to select property names from a dialog.
+ - Added support for executing XPath queries. If the result of the
+   query is a list of nodes, you can jump between the nodes. If the
+   result is a not a node, it is shown in a dialog box.
+ - Use jaxen instead of xalan for executing xpath queries.
+ - Added support for templates. A template is implemented by a Java
+   class that must generate a dom tree. Currently included is an
+   implementation that parses a file, but any code that generates
+   a DOM could be used. The templates must be defined in the Pollo
+   configuration file.
+ - show a red border around the component that has keyboard focus.
+ - the list with the elements now require to double click on an element
+   to insert it. Alternatively, you can select one an then press enter.
+ - when dropping a node on a location where its not allowed (according
+   to the schema in use), it is now asked if you want to insert it anyway.
+ - removed a bug where the tree could get distored when undoing
+   the insertion/removal of a node in a part of the tree that
+   was collapsed.
+ - Added an 'insert unlisted element' item to the lists with elements.
+ - stripping whitespace text nodes did not work in the presence
+   of a DTD. Thanks to Ross Burton for reporting this.
+ - disabled use of Kunstoff look and feel. It can look ugly on certain
+   JDK's. Will make this user-configurable in the next version.
+ - Changed splash screen logo to something that better fits with the season.
+ - started using log4j in some places. Still needs more work.
+ - after deleting a node, move the focus to the next node
+ - and any other stuff I forgot to mention...
+
+version 0.2
+===========
+ - rendering/editing of comment nodes, text nodes, cdata nodes
+ - comment out / uncomment
+ - text clipping (append '...' if text doesn't fit on the screen)
+ - opening multiple files, multiple views on same file
+ - replacement of elementdragpanel with nodeinsertionpanel
+ - on parsing, all textnodes that only contain whitespace are removed.
+   (this is not conformant with the xml spec since only when a schema is
+   present, the application can really know what whitespace is ignorable).
+   On saving, the XML is indented again (todo: make this user-configurable).
+ - save as
+ - dropping on element onto itself or as a descendant of itself not allowed anymore
+ - initial support for ant files (added an antschema.xml and antspec.xml,
+   both files are automatically generated).
+ - better indication of the selected node (using thick black border)
+ - use mousePressed instead of mouseClicked event to select nodes (otherwise
+   some clicks seemed to get lost)
+ - a drag-and-drop can now be undone in one step (previously this required
+   chosing undo twice). This is done by adding the concept of
+   undo-transactions to the undo engine. Update: did the same for 'uncomment'
+   and 'comment out' actions.
+ - changes to attributes are applied directly to the DOM (no need to press
+   the 'Apply changes' button anymore). There's now a clear visible
+   distinction between an attribute with no value and one with has empty
+   string as value. Attributes are alfabetically sorted.
+ - collapse all/expand all
+ - eliminated the use of the 'java.text.TextLayout' class, which has resulted
+   in large speed improvements.
+ - added about dialog with license information.
+ - autoscroll when dragging
+ - xpath expressions in the schema now resolve namespace prefixes to
+   namespaces defined in the schema, rather than in the instance document.
+ - and much more...
+
+version 0.1
+===========
+ - save document in the same encodig as it's loaded (previsously this was always ISO-8859-1)
+ - attributespanel is now disabled when no element is selected or after the selected element was removed

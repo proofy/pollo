@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!-- This element defines the namespace prefixes that can be used in XPath expressions.
+	Note that the 'xmlns:' should not be used at the start of attribute names. -->
+	<xpath-ns-prefixes xsd="http://www.w3.org/2001/XMLSchema"/>
+
+	<!-- XML Schema part 1: structures -->
+	<element name="xsd:schema">
+		<attributes>
+			<attribute name="targetNamespace"/>
+			<attribute name="version"/>
+			<attribute name="finalDefault"/>
+			<attribute name="blockDefault"/>
+			<attribute name="id"/>
+			<attribute name="elementFormDefault" choosefrom="qualified,unqualified"/>
+			<attribute name="attributeFormDefault" choosefrom="qualified,unqualified"/>
+		</attributes>
+		<allowedsubelements names="xsd:include,xsd:import,xsd:redefine,xsd:annotation,xsd:simpleType,xsd:complexType,xsd:element,xsd:attribute,xsd:attributeGroup,xsd:group,xsd:notation,xsd:annotation"/>
+	</element>
+
+	<element name="xsd:complexType">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="id"/>
+			<attribute name="abstract" choosefrom="true,false"/>
+			<attribute name="final" choosefrom="#all,extension,restriction"/>
+			<attribute name="block" choosefrom="#all,extension,restriction"/>
+			<attribute name="mixed" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:simpleContent,xsd:complexContent,xsd:all,xsd:choice,xsd:sequence,xsd:group,xsd:attribute,xsd:attributeGroup,xsd:anyAttribute"/>
+	</element>
+
+	<element name="xsd:complexContent">
+		<attributes>
+			<attribute name="mixed" choosefrom="true,false"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:restriction,xsd:extension"/>
+	</element>
+
+	<element name="xsd:simpleContent">
+		<attributes>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:restriction,xsd:extension"/>
+	</element>
+
+	<element name="xsd:extension">
+		<attributes>
+			<attribute name="base"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:all,xsd:choice,xsd:sequence,xsd:group,xsd:attribute,xsd:attributeGroup,xsd:anyAttribute"/>
+	</element>
+
+	<element name="xsd:element">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="id"/>
+			<attribute name="ref"/>
+			<attribute name="type"/>
+			<attribute name="minOccurs"/>
+			<attribute name="maxOccurs" choosefrom="1,2,3,4,5,unbounded"/>
+			<attribute name="nillable"/>
+			<attribute name="substitutionGroup"/>
+			<attribute name="abstract"/>
+			<attribute name="final"/>
+			<attribute name="block"/>
+			<attribute name="default"/>
+			<attribute name="fixed"/>
+			<attribute name="form" choosefrom="qualified,unqualified"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:complexType,xsd:simpleType,xsd:unique,xsd:key,xsd:keyref"/>
+	</element>
+
+	<element name="xsd:group">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="ref"/>
+			<attribute name="minOccurs"/>
+			<attribute name="maxOccurs" choosefrom="1,2,3,4,5,unbounded"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:all,xsd:choice,xsd:sequence"/>
+	</element>
+
+	<element name="xsd:all">
+		<attributes>
+			<attribute name="minOccurs"/>
+			<attribute name="maxOccurs" choosefrom="1,2,3,4,5,unbounded"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:element"/>
+	</element>
+
+	<element name="xsd:choice">
+		<attributes>
+			<attribute name="minOccurs"/>
+			<attribute name="maxOccurs" choosefrom="1,2,3,4,5,unbounded"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:element,xsd:group,xsd:choice,xsd:sequence,xsd:any"/>
+	</element>
+
+	<element name="xsd:sequence">
+		<attributes>
+			<attribute name="minOccurs"/>
+			<attribute name="maxOccurs" choosefrom="1,2,3,4,5,unbounded"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:element,xsd:group,xsd:choice,xsd:sequence,xsd:any"/>
+	</element>
+
+	<element name="xsd:any">
+		<attributes>
+			<attribute name="namespace" choosefrom="##any,##other,##local,##targetNamespace"/>
+			<attribute name="processContents" choosefrom="skip,lax,strict"/>
+			<attribute name="minOccurs"/>
+			<attribute name="maxOccurs" choosefrom="1,2,3,4,5,unbounded"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:anyAttribute">
+		<attributes>
+			<attribute name="namespace" choosefrom="##any,##other,##local,##targetNamespace"/>
+			<attribute name="processContents" choosefrom="skip,lax,strict"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:attribute">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="id"/>
+			<attribute name="ref"/>
+			<attribute name="type"/>
+			<attribute name="use" choosefrom="prohibited,optional,required"/>
+			<attribute name="default"/>
+			<attribute name="fixed"/>
+			<attribute name="form" choosefrom="qualified,unqualified"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:simpleType"/>
+	</element>
+
+	<element name="xsd:attributeGroup">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="id"/>
+			<attribute name="ref"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:attribute,xsd:attributeGroup,xsd:anyAttribute"/>
+	</element>
+
+	<element name="xsd:unique">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:selector,xsd:field"/>
+	</element>
+
+	<element name="xsd:key">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:selector,xsd:field"/>
+	</element>
+
+	<element name="xsd:keyref">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="refer"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:selector,xsd:field"/>
+	</element>
+
+	<element name="xsd:selector">
+		<attributes>
+			<attribute name="xpath"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:field">
+		<attributes>
+			<attribute name="xpath"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:include">
+		<attributes>
+			<attribute name="schemaLocation"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:import">
+		<attributes>
+			<attribute name="namespace"/>
+			<attribute name="schemaLocation"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:redefine">
+		<attributes>
+			<attribute name="schemaLocation"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:simpleType,xsd:complexType,xsd:attributeGroup,xsd:group"/>
+	</element>
+
+	<element name="xsd:notation">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="id"/>
+			<attribute name="public"/>
+			<attribute name="system"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:annotation">
+		<allowedsubelements names="xsd:appinfo,xsd:documentation"/>
+	</element>
+
+	<element name="xsd:appinfo">
+		<attributes>
+			<attribute name="source"/>
+			<attribute name="id"/>
+		</attributes>
+	</element>
+
+	<element name="xsd:documentation">
+		<attributes>
+			<attribute name="source"/>
+			<attribute name="id"/>
+			<attribute name="xml:lang"/>
+		</attributes>
+	</element>
+
+
+	<!-- XML Schema part 2: datatypes -->
+	<element name="xsd:simpleType">
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="final"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:restriction,xsd:list,xsd:union"/>
+	</element>
+
+	<element name="xsd:restriction">
+		<attributes>
+			<attribute name="base" choosefrom="xsd:anySimpleType,xsd:string,xsd:boolean,xsd:decimal,xsd:float,xsd:double,xsd:duration,xsd:dateTime,xsd:time,xsd:date,xsd:gYearMonth,xsd:gYear,xsd:gMonthDay,xsd:gDay,xsd:gMonth,xsd:hexBinary,xsd:base64Binary,xsd:anyURI,xsd:QName,xsd:NOTATION,xsd:normalizedString,xsd:token,xsd:language,xsd:NMTOKEN,xsd:NMTOKENS,xsd:Name,xsd:NCName,xsd:ID,xsd:IDREF,xsd:IDREFS,xsd:ENTITY,xsd:ENTITIES,xsd:integer,xsd:nonPositiveInteger,xsd:negativeInteger,xsd:long,xsd:int,xsd:short,xsd:byte,xsd:nonNegativeInteger,xsd:unsignedLong,xsd:unsignedInt,xsd:unsignedShort,xsd:unsignedByte,xsd:positiveInteger"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:all,xsd:choice,xsd:sequence,xsd:group,xsd:simpleType,xsd:minInclusive,xsd:minExclusive,xsd:maxInclusive,xsd:maxExclusive,xsd:totalDigits,xsd:fractionDigits,xsd:pattern,xsd:enumeration,xsd:whiteSpace,xsd:length,xsd:maxLength,xsd:minLength,xsd:attribute,xsd:attributeGroup,xsd:anyAttribute"/>
+	</element>
+
+	<element name="xsd:list">
+		<attributes>
+			<attribute name="itemType"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:simpleType"/>
+	</element>
+
+	<element name="xsd:union">
+		<attributes>
+			<attribute name="id"/>
+			<attribute name="memberTypes"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation,xsd:simpleType"/>
+	</element>
+
+	<element name="xsd:maxExclusive">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+			<attribute name="fixed" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:minExclusive">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+			<attribute name="fixed" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:maxInclusive">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+			<attribute name="fixed" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:minInclusive">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+			<attribute name="fixed" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:totalDigits">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+			<attribute name="fixed" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:fractionDigits">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+			<attribute name="fixed" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:length">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+			<attribute name="fixed" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:minLength">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+			<attribute name="fixed" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:maxLength">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+			<attribute name="fixed" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:enumeration">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:whiteSpace">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+			<attribute name="fixed" choosefrom="true,false"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+
+	<element name="xsd:pattern">
+		<attributes>
+			<attribute name="value"/>
+			<attribute name="id"/>
+		</attributes>
+		<allowedsubelements names="xsd:annotation"/>
+	</element>
+</schema>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- example for a simple fo file. At the beginning the page layout is set. 
+  Below fo:root there is always 
+- a single fo:layout-master-set which defines one or more page layouts
+- an optional fo:declarations 
+- and a sequence of one or more fo:page-sequences containing the text and formatting instructions 
+-->
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+  <fo:layout-master-set>
+    <fo:simple-page-master>
+      <fo:region-body/>
+      <fo:region-before/>
+      <fo:region-after/>
+    </fo:simple-page-master>
+  </fo:layout-master-set>
+  <fo:page-sequence>
+    <fo:flow flow-name="xsl-region-body"/>
+  </fo:page-sequence>
+</fo:root>

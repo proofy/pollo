@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Ant build file for pollo -->
+<project default="compile" name="pollo">
+  <path id="classpath">
+    <pathelement location="build"/>
+    <pathelement location="lib/endorsed/dom3-xmlParserAPIs.jar"/>
+    <pathelement location="lib/endorsed/dom3-xercesImpl.jar"/>
+    <pathelement location="lib/avalon-configuration.jar"/>
+    <pathelement location="lib/log4j-core.jar"/>
+    <pathelement location="lib/jaxen-core.jar"/>
+    <pathelement location="lib/jaxen-dom.jar"/>
+    <pathelement location="lib/saxpath.jar"/>
+    <pathelement location="lib/isorelax.jar"/>
+    <pathelement location="lib/msv-20031002.jar"/>
+    <pathelement location="lib/relaxngDatatype.jar"/>
+    <pathelement location="lib/xsdlib.jar"/>
+    <pathelement location="lib/xpp3-1.1.3.4-RC3_min.jar"/>
+    <pathelement location="lib/commons-lang-exception-2.0.jar"/>
+  </path>
+  <property name="version" value="0.4"/>
+  <!--
+  <taskdef classname="org.outerj.pollo.engine.ant.PolloAntStructure" name="polloantstructure"/>
+  <target name="polloantstructure">
+    <polloantstructure output="antschema.xml"/>
+  </target>
+  -->
+  <target name="compile">
+    <mkdir dir="build"/>
+	<javac bootclasspath="lib/endorsed/dom3-xmlParserAPIs.jar" debug="true"
+      destdir="build" includeJavaRuntime="true" srcdir="src">
+      <classpath refid="classpath"/>
+    </javac>
+    <copy todir="build">
+      <fileset defaultexcludes="true" dir="src">
+        <exclude name="**/*.java"/>
+      </fileset>
+	  <fileset defaultexcludes="true" dir="res"/>
+    </copy>
+    <copy file="ChangeLog" tofile="build/org/outerj/pollo/resource/ChangeLog"/>
+  </target>
+  <target name="clean">
+    <delete dir="build"/>
+    <delete file="pollo.jar"/>
+  </target>
+  <target depends="jar" name="zip">
+    <property name="buildname" value="pollo-${version}-bin"/>
+    <zip zipfile="${buildname}.zip">
+      <zipfileset defaultexcludes="true" dir="lib"
+        excludes="versions.txt" prefix="${buildname}/lib"/>
+      <zipfileset dir="." includes="pollo.jar" prefix="${buildname}/lib"/>
+      <zipfileset dir="." includes="${buildname}/README"/>
+      <zipfileset defaultexcludes="true" dir="bin" prefix="${buildname}/bin"/>
+      <zipfileset defaultexcludes="true" dir="conf" prefix="${buildname}/conf"/>
+    </zip>
+  </target>
+  <target name="apidoc">
+    <delete file="apidoc"/>
+    <mkdir dir="apidoc"/>
+    <javadoc destdir="apidoc" packagenames="org.outerj.*" sourcepath="src">
+      <link href="http://java.sun.com/products/jdk/1.3/docs/api"/>
+      <link href="http://xml.apache.org/xerces-j/apiDocs"/>
+      <classpath refid="classpath"/>
+    </javadoc>
+  </target>
+  <target name="dtd">
+    <antstructure output="ant.dtd"/>
+  </target>
+  <target depends="clean,compile" name="jar">
+    <jar compress="false" jarfile="pollo.jar">
+      <zipfileset dir="build"/>
+    </jar>
+  </target>
+  <target name="website">
+    <delete dir="websitebuild"/>
+    <mkdir dir="websitebuild"/>
+    <loadfile property="footer" srcfile="website/footer.html.part"/>
+    <filter token="footer" value="${footer}"/>
+    <copy filtering="true" todir="websitebuild">
+      <fileset defaultexcludes="true" dir="website" includes="*.html"/>
+    </copy>
+    <copy filtering="false" todir="websitebuild">
+      <fileset defaultexcludes="true" dir="website" excludes="*.html,.**"/>
+    </copy>
+  </target>
+</project>

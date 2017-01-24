@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<schema>
+	<element name="displayspec">
+		<allowedsubelements names="element"/>
+		<attributes>
+			<attribute name="treetype" choosefrom="pollo,classic"/>
+			<attribute name="background-color"/>
+		</attributes>
+	</element>
+
+	<element name="element">
+		<allowedsubelements names="help,attributes"/>
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="label"/>
+      <attribute name="background-color"/>
+      <attribute name="color"/>
+      <attribute name="icon"/>
+		</attributes>
+  </element>
+
+	<element name="help">
+		<allowedsubtexts texts="#any"/>
+  </element>
+
+	<element name="attributes">
+		<allowedsubelements names="attribute"/>
+  </element>
+
+	<element name="attribute">
+		<allowedsubelements names="help"/>
+		<attributes>
+			<attribute name="name"/>
+			<attribute name="label"/>
+      <attribute name="color"/>
+		</attributes>
+  </element>
+
+</schema>

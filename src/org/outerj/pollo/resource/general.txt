@@ -1,0 +1,20 @@
+Pollo is an XML editor.
+
+For more information see the online documentation at
+http://pollo.sourceforge.net
+
+Pollo is an open-source project with a very liberal license.
+This means a lot more than just giving the source away for free,
+and you as a user sitting back and anxiously awaiting the next
+release. We welcome your participation, being it patches, questions,
+comments, remarks, documentation enhancements or feature requests.
+
+To provide feedback about Pollo you can write to:
+
+ Pollo's mailing list: pollo-development@lists.sourceforge.net
+ to subscribe see
+ http://lists.sourceforge.net/lists/listinfo/pollo-development
+
+----
+Bruno Dumon
+bdumon@users.sourceforge.net

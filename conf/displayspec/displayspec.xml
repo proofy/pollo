@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<displayspec background-color="FFFFFF" treetype="classic">
+  <element background-color="db8f24" color="FF0000" icon="classpath:/icons/star.png" label="Display Specification" name="displayspec">
+    <help>Root element of the display specification file.</help>
+    <attributes>
+      <attribute label="Tree type" name="treetype">
+        <help>The kind of tree to display.</help>
+      </attribute>
+      <attribute label="Background color" name="background-color">
+        <help>Background color for the tree widget.</help>
+      </attribute>
+    </attributes>
+  </element>
+  <element color="660066" label="Element" name="element">
+    <help>Specifies presentation details for an XML element.</help>
+    <attributes>
+      <attribute color="336600" label="Name" name="name">
+        <help>Name of the element to which these settings apply. Can be a nested path (e.g. element1/element2).</help>
+      </attribute>
+      <attribute color="565aaf" label="Label" name="label">
+        <help>Label to show instead of the real element name.</help>
+      </attribute>
+      <attribute label="Background color" name="background-color">
+        <help>Background color for the element.</help>
+      </attribute>
+      <attribute label="Text color" name="color">
+        <help>Color to use for the element name or label.</help>
+      </attribute>
+      <attribute label="Icon" name="icon">
+        <help>URL for the icon to display for this element.</help>
+      </attribute>
+    </attributes>
+  </element>
+  <element label="Element help" name="element/help">
+    <help>Help to display for this XML element.</help>
+  </element>
+  <element label="Attribute help" name="attribute/help">
+    <help>Help to display for this XML attribute.</help>
+  </element>
+  <element label="Attributes" name="attributes">
+    <help>Attributes will be shown in the same order as they are specified herein.</help>
+  </element>
+  <element label="Attribute" name="attribute">
+    <help>Specifies presentation details for an XML attribute.</help>
+    <attributes>
+      <attribute color="336600" label="Name" name="name">
+        <help>Name of the attribute to which these settings apply.</help>
+      </attribute>
+      <attribute color="565aaf" label="Label" name="label">
+        <help>Label to show instead of the real attribute name.</help>
+      </attribute>
+      <attribute label="Text color" name="color">
+        <help>Color to use for the attribute name or label.</help>
+      </attribute>
+    </attributes>
+  </element>
+</displayspec>

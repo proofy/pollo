@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+The element colors are the same for elements belonging to the same group:
+- type definition components: xsd:simpleType,xsd:complexType
+- declaration components: xsd:attribute,xsd:element,xsd:notation
+- model group components: model groups(xsd:all,xsd:choice,xsd:sequence),
+                          particles,
+                          wildcards (xsd:any),
+                          attribute uses (xsd:attribute)
+- identity constraint definition components: xsd:unique, xsd:key, xsd:keyref,xsd:selector,xsd:field
+- group definition components (for reuse): xsd:attributeGroup,xsd:group
+- annotation components: xsd:annotation,xsd:appinfo,xsd:documentation
+
+- xsd:union,xsd:list
+- xsd:restriction,xsd:extension
+- xsd:complexContent,xsd:simpleContent
+- the facets
+-->
+<displayspec xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <element name="xsd:schema" background-color="e0eee0">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="version"/>
+      <attribute name="finalDefault"/>
+      <attribute name="blockDefault"/>
+      <attribute name="elementFormDefault"/>
+      <attribute name="attributeFormDefault"/>
+      <attribute name="targetNamespace"/>
+    </attributes>
+  </element>
+  <element name="xsd:complexType" background-color="7c8eff">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="name"/>
+      <attribute name="abstract"/>
+      <attribute name="final"/>
+      <attribute name="block"/>
+      <attribute name="mixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:complexContent" background-color="aea4e8">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="mixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:simpleContent" background-color="aea4e8">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="mixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:extension" background-color="ff969b">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="base"/>
+    </attributes>
+  </element>
+  <element name="xsd:element" background-color="ffda7c">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="name"/>
+      <attribute name="ref"/>
+      <attribute name="type"/>
+      <attribute name="minOccurs"/>
+      <attribute name="maxOccurs"/>
+      <attribute name="nillable"/>
+      <attribute name="substitutionGroup"/>
+      <attribute name="abstract"/>
+      <attribute name="final"/>
+      <attribute name="block"/>
+      <attribute name="default"/>
+      <attribute name="fixed"/>
+      <attribute name="form"/>
+    </attributes>
+  </element>
+  <element name="xsd:group" background-color="d1afca">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="name"/>
+      <attribute name="ref"/>
+      <attribute name="minOccurs"/>
+      <attribute name="maxOccurs"/>
+    </attributes>
+  </element>
+  <element name="xsd:all" background-color="8bd6bd">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="minOccurs"/>
+      <attribute name="maxOccurs"/>
+    </attributes>
+  </element>
+  <element name="xsd:choice" background-color="8bd6bd">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="minOccurs"/>
+      <attribute name="maxOccurs"/>
+    </attributes>
+  </element>
+  <element name="xsd:sequence" background-color="8bd6bd">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="minOccurs"/>
+      <attribute name="maxOccurs"/>
+    </attributes>
+  </element>
+  <element name="xsd:any" background-color="8bd6bd">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="namespace"/>
+      <attribute name="processContents"/>
+      <attribute name="minOccurs"/>
+      <attribute name="maxOccurs"/>
+    </attributes>
+  </element>
+  <element name="xsd:anyAttribute" background-color="e0eee0">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="namespace"/>
+      <attribute name="processContents"/>
+    </attributes>
+  </element>
+  <element name="xsd:attribute" background-color="ffda7c">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="name"/>
+      <attribute name="ref"/>
+      <attribute name="type"/>
+      <attribute name="use"/>
+      <attribute name="default"/>
+      <attribute name="fixed"/>
+      <attribute name="form"/>
+    </attributes>
+  </element>
+  <element name="xsd:attributeGroup" background-color="d1afca">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="name"/>
+      <attribute name="ref"/>
+    </attributes>
+  </element>
+  <element name="xsd:unique" background-color="e5aeb1">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="name"/>
+    </attributes>
+  </element>
+  <element name="xsd:key" background-color="e5aeb1">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="name"/>
+    </attributes>
+  </element>
+  <element name="xsd:keyref" background-color="e5aeb1">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="name"/>
+      <attribute name="refer"/>
+    </attributes>
+  </element>
+  <element name="xsd:selector" background-color="e5aeb1">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="xpath"/>
+    </attributes>
+  </element>
+  <element name="xsd:field" background-color="e5aeb1">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="xpath"/>
+    </attributes>
+  </element>
+  <element name="xsd:include" background-color="e0eee0">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="schemaLocation"/>
+    </attributes>
+  </element>
+  <element name="xsd:import" background-color="e0eee0">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="namespace"/>
+      <attribute name="schemaLocation"/>
+    </attributes>
+  </element>
+  <element name="xsd:redefine" background-color="e0eee0">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="schemaLocation"/>
+    </attributes>
+  </element>
+  <element name="xsd:notation" background-color="ffda7c">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="name"/>
+      <attribute name="system"/>
+      <attribute name="public"/>
+    </attributes>
+  </element>
+  <element name="xsd:annotation" background-color="e0eee0"/>
+  <element name="xsd:appinfo" background-color="e0eee0">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="source"/>
+    </attributes>
+  </element>
+  <element name="xsd:documentation" background-color="e0eee0">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="source"/>
+      <attribute name="xml:lang"/>
+    </attributes>
+  </element>
+  <element name="xsd:simpleType" background-color="7c8eff">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="name"/>
+      <attribute name="final"/>
+    </attributes>
+  </element>
+  <element name="xsd:restriction" background-color="ff969b">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="base"/>
+    </attributes>
+  </element>
+  <element name="xsd:list" background-color="ffdbdd">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="itemType"/>
+    </attributes>
+  </element>
+  <element name="xsd:union" background-color="ffdbdd">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="memberTypes"/>
+    </attributes>
+  </element>
+  <element name="xsd:maxExclusive" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+      <attribute name="fixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:minExclusive" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+      <attribute name="fixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:maxInclusive" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+      <attribute name="fixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:minInclusive" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+      <attribute name="fixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:totalDigits" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+      <attribute name="fixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:fractionDigits" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+      <attribute name="fixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:length" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+      <attribute name="fixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:minLength" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+      <attribute name="fixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:maxLength" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+      <attribute name="fixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:enumeration" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+    </attributes>
+  </element>
+  <element name="xsd:whiteSpace" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+      <attribute name="fixed"/>
+    </attributes>
+  </element>
+  <element name="xsd:pattern" background-color="e0cca9">
+    <attributes>
+      <attribute name="id"/>
+      <attribute name="value"/>
+    </attributes>
+  </element>
+</displayspec>

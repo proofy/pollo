@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Display Specification for use with Pollo.
+     This file specifies the colors to use, and which attributes
+  	 to show on an element.
+-->
+<displayspec xmlns:map="http://apache.org/cocoon/sitemap/1.0">
+  <element name="map:pipelines" background-color="e0eee0"/>
+  <element name="map:pipeline" background-color="73e6a1">
+    <help><![CDATA[Defines how pipelines are constructed. When defining them, make sure that each pipeline results in:
+      <ul>
+        <li>1 generator, zero or more transformers, and 1 serializer.</li>
+        <li>1 aggregator, zero or more transformers, and 1 serializer.</li>
+        <li>a reader</li>
+        <li>a redirect-to</li>
+        <li>a flowscript call</li>
+      </ul>
+      By using matchers, selectors and actions, you can dynamically construct the pipelines.
+      ]]></help>
+    <attributes>
+      <attribute name="internal-only">
+        <help>If this attribute is true, the contents of this pipline will only be accessible from within Cocoon (e.g. using the cocoon: protocol), but not from external requests.</help>
+      </attribute>
+    </attributes>
+  </element>
+  <element name="map:parameter" background-color="e6e6e6">
+    <attributes>
+      <attribute name="name"/>
+      <attribute name="value"/>
+    </attributes>
+  </element>
+  <element name="map:generate" background-color="c3cfc3">
+    <attributes>
+      <attribute name="type"/>
+      <attribute name="src"/>
+      <attribute name="label"/>
+    </attributes>
+  </element>
+  <element name="map:transform" background-color="dbe8db">
+    <attributes>
+      <attribute name="type"/>
+      <attribute name="src"/>
+      <attribute name="label"/>
+    </attributes>
+  </element>
+  <element name="map:serialize" background-color="e6f4e6">
+    <attributes>
+      <attribute name="type"/>
+      <attribute name="status-code"/>
+      <attribute name="mime-type"/>
+      <attribute name="label"/>
+    </attributes>
+  </element>
+  <element name="map:match" background-color="97a1e6">
+    <attributes>
+      <attribute name="type"/>
+      <attribute name="pattern"/>
+      <attribute name="name"/>
+    </attributes>
+  </element>
+  <element name="map:redirect-to" background-color="d6d684">
+    <attributes>
+      <attribute name="uri"/>
+      <attribute name="session">
+        <help>Makes sure a session exists (and creates one if it doesn't exist) before doing the redirect.</help>
+      </attribute>
+      <attribute name="global">
+        <help>Redirects even if the redirect is part of a subpipeline</help>
+      </attribute>
+      <attribute name="permanent"/>
+    </attributes>
+  </element>
+  <element name="map:mount" background-color="c3cfc3">
+    <attributes>
+      <attribute name="src"/>
+      <attribute name="uri-prefix"/>
+      <attribute name="language"/>
+    </attributes>
+  </element>
+  <element name="map:read" background-color="c3cfc3">
+    <attributes>
+      <attribute name="type"/>
+      <attribute name="src"/>
+      <attribute name="mime-type"/>
+    </attributes>
+  </element>
+  <element name="map:aggregate" background-color="b8a6bc">
+    <attributes>
+      <attribute name="element"/>
+      <attribute name="prefix"/>
+      <attribute name="ns"/>
+      <attribute name="label"/>
+    </attributes>
+  </element>
+  <element name="map:part" background-color="dcc6e0">
+    <attributes>
+      <attribute name="src"/>
+      <attribute name="element"/>
+      <attribute name="prefix"/>
+      <attribute name="ns"/>
+      <attribute name="strip-root"/>
+      <attribute name="label"/>
+    </attributes>
+  </element>
+  <element name="map:act" background-color="edb4b4">
+    <attributes>
+      <attribute name="type"/>
+      <attribute name="set"/>
+      <attribute name="src"/>
+      <attribute name="name"/>
+    </attributes>
+  </element>
+  <element name="map:action-set/map:act" background-color="edb4b4">
+    <attributes>
+      <attribute name="type"/>
+      <attribute name="action"/>
+      <attribute name="src"/>
+    </attributes>
+  </element>
+  <element name="map:select" background-color="9cd1ad">
+    <attributes>
+      <attribute name="type"/>
+    </attributes>
+  </element>
+  <element name="map:when" background-color="9cd1ad">
+    <attributes>
+      <attribute name="test"/>
+    </attributes>
+  </element>
+  <element name="map:otherwise" background-color="9cd1ad"/>
+  <element name="map:handle-errors" background-color="e59292">
+    <attributes>
+      <attribute name="type"/>
+    </attributes>
+  </element>
+  <element name="map:resources" background-color="84a8d8">
+    <help>Resources are reusable pipeline fragments. They can be called using map:call, and you can supply parameters when calling them, which can then be referenced using the familiar {*name*} syntax.</help>
+  </element>
+  <element name="map:resource" background-color="edb4b4">
+    <attributes>
+      <attribute name="name"/>
+    </attributes>
+  </element>
+  <element name="map:views" background-color="84a8d8">
+    <help><![CDATA[Views provide different views to resources. Views are orthogonal to pipelines.<p/>A view is used by specifying a request parameter 'cocoon-view' with the name of the view as value. The pipeline will be executed up to a certain 'label', from where the view definition then takes over.]]></help>
+  </element>
+  <element name="map:view" background-color="edb4b4">
+    <help>Use either the from-label or from-position attribute.</help>
+    <attributes>
+      <attribute name="name"/>
+      <attribute name="from-label"/>
+      <attribute name="form-position"/>
+    </attributes>
+  </element>
+  <element name="map:action-sets" background-color="84a8d8"/>
+  <element name="map:action-set" background-color="e6b873">
+    <attributes>
+      <attribute name="name"/>
+    </attributes>
+  </element>
+  <element name="map:sitemap" background-color="b5b5cc"/>
+  <element name="map:components" background-color="e6b873"/>
+  <element name="map:generators" background-color="c0ccb5">
+    <attributes>
+      <attribute name="default"/>
+    </attributes>
+  </element>
+  <element name="map:transformers" background-color="c0ccb5">
+    <attributes>
+      <attribute name="default"/>
+    </attributes>
+  </element>
+  <element name="map:readers" background-color="c0ccb5">
+    <attributes>
+      <attribute name="default"/>
+    </attributes>
+  </element>
+  <element name="map:serializers" background-color="c0ccb5">
+    <attributes>
+      <attribute name="default"/>
+    </attributes>
+  </element>
+  <element name="map:selectors" background-color="c0ccb5">
+    <attributes>
+      <attribute name="default"/>
+    </attributes>
+  </element>
+  <element name="map:matchers" background-color="c0ccb5">
+    <attributes>
+      <attribute name="default"/>
+    </attributes>
+  </element>
+  <element name="map:actions" background-color="c0ccb5"/>
+  <element name="map:generator" background-color="b5ccca">
+    <attributes>
+      <attribute name="name"/>
+      <attribute name="src"/>
+      <attribute name="label"/>
+      <attribute name="pool-min"/>
+      <attribute name="pool-max"/>
+      <attribute name="pool-grow"/>
+      <attribute name="logger"/>
+    </attributes>
+  </element>
+  <element name="map:transformer" background-color="b5ccca">
+    <attributes>
+      <attribute name="name"/>
+      <attribute name="src"/>
+      <attribute name="label"/>
+      <attribute name="pool-min"/>
+      <attribute name="pool-max"/>
+      <attribute name="pool-grow"/>
+      <attribute name="logger"/>
+    </attributes>
+  </element>
+  <element name="map:reader" background-color="b5ccca">
+    <attributes>
+      <attribute name="name"/>
+      <attribute name="src"/>
+      <attribute name="mime-type"/>
+      <attribute name="pool-min"/>
+      <attribute name="pool-max"/>
+      <attribute name="pool-grow"/>
+      <attribute name="logger"/>
+    </attributes>
+  </element>
+  <element name="map:serializer" background-color="b5ccca">
+    <attributes>
+      <attribute name="name"/>
+      <attribute name="src"/>
+      <attribute name="mime-type"/>
+      <attribute name="label"/>
+      <attribute name="pool-min"/>
+      <attribute name="pool-max"/>
+      <attribute name="pool-grow"/>
+      <attribute name="logger"/>
+    </attributes>
+  </element>
+  <element name="map:selector" background-color="b5ccca">
+    <attributes>
+      <attribute name="name"/>
+      <attribute name="src"/>
+      <attribute name="pool-min"/>
+      <attribute name="pool-max"/>
+      <attribute name="pool-grow"/>
+      <attribute name="logger"/>
+    </attributes>
+  </element>
+  <element name="map:matcher" background-color="b5ccca">
+    <attributes>
+      <attribute name="name"/>
+      <attribute name="src"/>
+      <attribute name="pool-min"/>
+      <attribute name="pool-max"/>
+      <attribute name="pool-grow"/>
+      <attribute name="logger"/>
+    </attributes>
+  </element>
+  <element name="map:action" background-color="b5ccca">
+    <attributes>
+      <attribute name="name"/>
+      <attribute name="src"/>
+      <attribute name="pool-min"/>
+      <attribute name="pool-max"/>
+      <attribute name="pool-grow"/>
+      <attribute name="logger"/>
+    </attributes>
+  </element>
+  <element name="map:call" background-color="f3e26d">
+    <help>The attributes resource, function and continuation of this element are mutual exclusive (only use one of them at the same time).</help>
+    <attributes>
+      <attribute name="resource">
+        <help>Calls a named resource (defined by map:resource).</help>
+      </attribute>
+      <attribute name="function">
+        <help>Starts a flow by calling the specified function.</help>
+      </attribute>
+      <attribute name="continuation">
+        <help>Continues a flow started by map:call/@function.</help>
+      </attribute>
+    </attributes>
+  </element>
+  <element name="map:pipes" background-color="c0ccb5">
+    <help>Defines the available pipeline implementations. With "pipeline" we mean the logic connecting the generator, transformer(s) and serialier together. There are noncaching, caching and profiling implementations available.</help>
+    <attributes>
+      <attribute name="default"/>
+    </attributes>
+  </element>
+  <element name="map:pipe" background-color="b5ccca">
+    <attributes>
+      <attribute name="name"/>
+      <attribute name="src"/>
+      <attribute name="pool-min"/>
+      <attribute name="pool-max"/>
+      <attribute name="pool-grow"/>
+      <attribute name="logger"/>
+    </attributes>
+  </element>
+  <element name="map:flow" background-color="c0ccb5">
+    <attributes>
+      <attribute name="language"/>
+    </attributes>
+  </element>
+  <element name="map:script" background-color="b5ccca">
+    <attributes>
+      <attribute name="src"/>
+    </attributes>
+  </element>
+</displayspec>
